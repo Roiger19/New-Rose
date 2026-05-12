@@ -22,8 +22,14 @@ export const metadata: Metadata = {
   title: "New Rose",
   description: "Ropa seleccionada con estilo y corazón",
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" }, // Fallback para navegadores antiguos
+      { url: "/icon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon-192x192.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
 };
 
