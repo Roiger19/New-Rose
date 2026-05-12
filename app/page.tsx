@@ -93,42 +93,49 @@ export default function Home() {
 
       {/* ── HERO ── */}
       <section id="hero" className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#FFF5F7] pt-24">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070" 
-            className="w-full h-full object-cover object-center" 
-            alt="Rose Vault Hero"
-          />
-          <div className="absolute inset-0 z-0" style={{ background: "linear-gradient(to right, rgba(255,245,247,1) 0%, rgba(255,245,247,0.8) 40%, rgba(255,245,247,0) 100%)" }} />
-        </div>
+  <div className="absolute inset-0 z-0">
+    <img 
+      src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070" 
+      className="w-full h-full object-cover object-center" 
+      alt="Rose Vault Hero"
+    />
+    {/* CAMBIO AQUÍ: Subimos la opacidad a 0.95 y extendemos el sólido al 50% para proteger el texto en móvil */}
+    <div 
+      className="absolute inset-0 z-0" 
+      style={{ 
+        background: "linear-gradient(to right, rgba(255,245,247,1) 0%, rgba(255,245,247,0.95) 50%, rgba(255,245,247,0) 100%)" 
+      }} 
+    />
+  </div>
 
-        <div className="relative z-20 max-w-[1200px] mx-auto px-6 w-full py-20">
-          <div className="max-w-2xl text-left">
-            <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#D4A853] mb-6">
-              Catálogo de Ropa Femenina
-            </span>
-            
-            <h1 className="font-luxury-serif text-5xl sm:text-6xl lg:text-7xl text-[#2D1F2B] leading-tight mb-8">
-              Ropa con <span className="italic">historia,</span> <br />
-              <span className="sophisticated-pink">estilo</span> y <br />
-              <span className="sophisticated-gold">corazón</span>
-            </h1>
-            
-            <p className="text-lg text-[#8B6F7F] mb-12 max-w-md leading-relaxed">
-              Descubre prendas únicas que merecen una segunda oportunidad, seleccionadas con ese toque de elegancia que tu armario merece.
-            </p>
-            
-            <div className="flex flex-wrap gap-5">
-              <Link href="/catalogo" className="px-10 py-4 rounded-full text-sm font-bold bg-gradient-to-r from-[#D4A853] to-[#B8933F] text-white shadow-lg hover:scale-105 transition-all">
-                Explorar Catálogo
-              </Link>
-              <Link href="#categorias" className="px-10 py-4 rounded-full text-sm font-bold border-2 border-[#D4BFC8] text-[#2D1F2B] hover:bg-[#D4BFC8]/10 transition-all">
-                Ver Categorías
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+  <div className="relative z-20 max-w-[1200px] mx-auto px-6 w-full py-20">
+    <div className="max-w-2xl text-left">
+      <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#D4A853] mb-6">
+        Catálogo de Ropa Femenina
+      </span>
+      
+      <h1 className="font-luxury-serif text-5xl sm:text-6xl lg:text-7xl text-[#2D1F2B] leading-tight mb-8">
+        Ropa con <span className="italic">historia,</span> <br />
+        <span className="sophisticated-pink">estilo</span> y <br />
+        <span className="sophisticated-gold">corazón</span>
+      </h1>
+      
+      {/* CAMBIO AQUÍ: Agregamos 'antialiased' para mayor nitidez en móviles */}
+      <p className="text-lg text-[#4A3744] mb-12 max-w-md leading-relaxed font-medium antialiased">
+        Descubre prendas únicas que merecen una segunda oportunidad, seleccionadas con ese toque de elegancia que tu armario merece.
+      </p>
+      
+      <div className="flex flex-wrap gap-5">
+        <Link href="/catalogo" className="px-10 py-4 rounded-full text-sm font-bold bg-gradient-to-r from-[#D4A853] to-[#B8933F] text-white shadow-lg hover:scale-105 transition-all">
+          Explorar Catálogo
+        </Link>
+        <Link href="#categorias" className="px-10 py-4 rounded-full text-sm font-bold border-2 border-[#D4BFC8] text-[#2D1F2B] hover:bg-[#D4BFC8]/10 transition-all">
+          Ver Categorías
+        </Link>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ── RECIÉN LLEGADOS ── */}
       <section className="py-20 max-w-[1200px] mx-auto px-6">
@@ -161,7 +168,9 @@ export default function Home() {
     
     {/* MODIFICACIÓN AQUÍ: Se añade 'scrollbar-hide' al div contenedor */}
     <div className="flex overflow-x-auto gap-4 pb-8 scrollbar-hide snap-x snap-mandatory">
-      {categories.map((cat) => (
+      {categories
+      .filter((cat) => categoryImages[cat.slug]) // Solo mostrar categorías con imagen
+      .map((cat) => (
         <Link 
           href={`/catalogo?categoria=${cat.slug}`} 
           key={cat.id} 
