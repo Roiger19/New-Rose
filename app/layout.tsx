@@ -19,8 +19,12 @@ const geistMono = Geist_Mono({
 
 // Configuración de metadatos para SEO
 export const metadata: Metadata = {
-  title: "New Rose - Rose Vault",
-  description: "Ropa usada con historia y estilo",
+  title: "New Rose",
+  description: "Ropa seleccionada con estilo y corazón",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
